@@ -1,16 +1,6 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+# `log`
 
-# Table of Content
-
-- [Name](#name)
-- [Description](#description)
-- [Author](#author)
-- [Copyright and License](#copyright-and-license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# Name
+## Name
 
 golang-library-log
 
@@ -19,7 +9,7 @@ including `Debug` `Debugf` `Info` `Infof` `Warn` `Warnf` `Error` `Errorf` `Fatal
 and `With` `Named` `Sync`
 function.
 
-# Description
+## Description
 
 a simple encapsulation of zap logger is made,it supports getting `Logger` from context to using in `goroute`
 
@@ -31,7 +21,7 @@ a simple encapsulation of zap logger is made,it supports getting `Logger` from c
 
 `AssociateC` returns a copy of context.Context in which the Logger associated.
 
-## Synopsis
+== Synopsis
 
 ```go
 package main
@@ -57,14 +47,13 @@ func main() {
 	}()
 	wg.Wait()
 }
-
 ```
 
-# Author
+## Author
 
 RuiFG (樊国睿) <guorui.fan@baishancloud.com>
 
-# Copyright and License
+## Copyright and License
 
 The MIT License (MIT)
 
