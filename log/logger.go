@@ -2,7 +2,7 @@ package log
 
 import (
 	"fmt"
-	"github/baishan-development-guizhou/golang-library/goid"
+	"github.com/baishan-development-guizhou/golang-library/goid"
 	"go.uber.org/zap/zapcore"
 	"os"
 )
@@ -56,11 +56,11 @@ type CallerEncoder zapcore.CallerEncoder
 var (
 	FullCallerEncoder        CallerEncoder = zapcore.FullCallerEncoder
 	FullRoutineCallerEncoder CallerEncoder = func(caller zapcore.EntryCaller, enc zapcore.PrimitiveArrayEncoder) {
-		enc.AppendString(fmt.Sprintf("%d#%s %s", os.Getegid(), goid.ID(), caller.String()))
+		enc.AppendString(fmt.Sprintf("%d#%d %s", os.Getegid(), goid.ID(), caller.String()))
 	}
 	ShortCallerEncoder        CallerEncoder = zapcore.ShortCallerEncoder
 	ShortRoutineCallerEncoder CallerEncoder = func(caller zapcore.EntryCaller, enc zapcore.PrimitiveArrayEncoder) {
-		enc.AppendString(fmt.Sprintf("%d#%s %s", os.Getegid(), goid.ID(), caller.TrimmedPath()))
+		enc.AppendString(fmt.Sprintf("%d#%d %s", os.Getegid(), goid.ID(), caller.TrimmedPath()))
 	}
 )
 

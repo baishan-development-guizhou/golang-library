@@ -1,0 +1,5 @@
+= golang-library
+
+
+image:https://github.com/baishan-development-guizhou/golang-library/actions/workflows/test.yml/badge.svg[title="Tests And Coverage", link="https://github.com/baishan-development-guizhou/golang-library/actions/workflows/test.yml"]
+image:https://codecov.io/gh/baishan-development-guizhou/golang-library/branch/master/graph/badge.svg?token=MBPD4JCBSL[title="codecov", link="https://codecov.io/gh/baishan-development-guizhou/golang-library"]

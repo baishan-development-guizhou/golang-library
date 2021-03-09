@@ -9,8 +9,8 @@ import (
 func TestGoID(t *testing.T) {
 	assert.Equal(t, ID(), ID())
 }
-func TestConcurrentGetID(t *testing.T) {
 
+func TestConcurrentGetID(t *testing.T) {
 	var wg sync.WaitGroup
 	concurrent := 1000
 	wg.Add(concurrent)

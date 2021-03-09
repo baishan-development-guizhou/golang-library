@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"github/baishan-development-guizhou/golang-library/log"
+	"github.com/baishan-development-guizhou/golang-library/log"
 	"sync"
 )
 

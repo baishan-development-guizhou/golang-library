@@ -1,4 +1,4 @@
-module github/baishan-development-guizhou/golang-library
+module github.com/baishan-development-guizhou/golang-library
 
 go 1.15
 
