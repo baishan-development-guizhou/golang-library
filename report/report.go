@@ -3,7 +3,7 @@ package report
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/baishan-development-guizhou/golang-library/common/ticker"
+	"github.com/baishan-development-guizhou/golang-library/ocommon/oticker"
 	"net/http"
 	"time"
 )
@@ -23,7 +23,7 @@ func (o *Options) AddReporter(point func() Point, interval time.Duration) *Optio
 // Support chain call.
 func (o *Options) SendReporter(reporter Reporter) *Options {
 	o.Reporters = append(o.Reporters, reporter)
-	ticker.Ticker(o.context, reporter.Interval, func() {
+	oticker.TickerCtx(o.context, reporter.Interval, func() {
 		o.Send(reporter.Point())
 	})
 	return o
@@ -36,7 +36,7 @@ func (o *Options) SendReporterPayLoad(point func() Point, interval time.Duration
 		Point:    point,
 		Interval: interval,
 	})
-	ticker.Ticker(o.context, interval, func() {
+	oticker.TickerCtx(o.context, interval, func() {
 		o.Send(point())
 	})
 	return o
@@ -102,7 +102,7 @@ func (o *Options) assemblePoint(point Point) Point {
 // Start will start report.
 func (o *Options) Start() {
 	for _, reporter := range o.Reporters {
-		ticker.Ticker(o.context, reporter.Interval, func() {
+		oticker.TickerCtx(o.context, reporter.Interval, func() {
 			o.Send(reporter.Point())
 		})
 	}
