@@ -183,6 +183,8 @@ func (o *options) Init() Logger {
 
 	encoderConfig.EncodeLevel = zapcore.LevelEncoder(o.levelEncoder)
 	encoderConfig.EncodeTime = zapcore.TimeEncoderOfLayout(o.timeLayout)
+	//fix #15
+	encoderConfig.ConsoleSeparator = " "
 	cores = []zapcore.Core{zapcore.NewCore(
 		o.outPutEncoder(encoderConfig),
 		zapcore.NewMultiWriteSyncer(infoWriteSyncers...),
