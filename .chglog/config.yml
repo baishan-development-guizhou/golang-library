@@ -4,11 +4,14 @@ info:
   title: CHANGELOG
   repository_url: https://github.com/baishan-development-guizhou/golang-library
 options:
-  sort: "date"
   commits:
     filters:
       Type:
-        - chore
+        - feat
+        - fix
+        - perf
+        - refactor
+        - docs
     sort_by: Scope
   commit_groups:
     group_by: Type
