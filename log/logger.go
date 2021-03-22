@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/baishan-development-guizhou/golang-library/ocommon/oid"
 	"go.uber.org/zap/zapcore"
+	"log"
 	"os"
 )
 
@@ -31,6 +32,8 @@ type Logger interface {
 	Named(named string) Logger
 
 	Sync() error
+
+	StdLogger() *log.Logger
 }
 
 type Level zapcore.Level

@@ -8,7 +8,7 @@ A golang logger
 ## Description
 
 including `Debug` `Debugf` `Info` `Infof` `Warn` `Warnf` `Error` `Errorf` `Fatal` `Fatalf` `Panic` `Panicf`
-and `With` `Named` `Sync`
+and `With` `Named` `Sync` `StdLogger`
 function.
 
 |      | description |
