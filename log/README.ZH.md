@@ -7,7 +7,7 @@
 ## Description
 
 包括 `Debug` `Debugf` `Info` `Infof` `Warn` `Warnf` `Error` `Errorf` `Fatal` `Fatalf` `Panic` `Panicf`
-和 `With` `Named` `Sync`
+和 `With` `Named` `Sync` `StdLogger`
 等函数.
 
 |      |   描述   |
