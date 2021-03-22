@@ -1,27 +1,24 @@
 # `log`
 
-## Name
+[中文/Chinese](README.ZH.md)
 
-golang-library-log
+A simple encapsulation of zap logger is made,it supports getting `Logger` from context to using in `goroutine`
+A golang logger
 
-a golang logger
+## Description
+
 including `Debug` `Debugf` `Info` `Infof` `Warn` `Warnf` `Error` `Errorf` `Fatal` `Fatalf` `Panic` `Panicf`
 and `With` `Named` `Sync`
 function.
 
-## Description
+|      | description |
+| ---- | ----------- |
+| `G` | returns global Logger extends from zap.Logger. |
+| `ReplaceG` | replace the global Logger with the one passed by the parameter. |
+| `C` | is getting `Logger` from `context.Context`,if the context does not contain a logger, the `G()` logger will return. |
+| `AssociateC` | returns a copy of `context.Context` in which the `Logger` associated.
 
-a simple encapsulation of zap logger is made,it supports getting `Logger` from context to using in `goroute`
-
-`G` returns global Logger extends from zap.Logger.
-
-`ReplaceG` replace the global Logger with the one passed by the parameter.
-
-`C` is getting `Logger` from `context.Context`,if the context does not contain a logger, the `G()` logger will return.
-
-`AssociateC` returns a copy of context.Context in which the Logger associated.
-
-== Synopsis
+## Synopsis
 
 ```go
 package main
@@ -48,13 +45,3 @@ func main() {
 	wg.Wait()
 }
 ```
-
-## Author
-
-RuiFG (樊国睿) <guorui.fan@baishancloud.com>
-
-## Copyright and License
-
-The MIT License (MIT)
-
-Copyright (c) 2021 RuiFG (樊国睿) <guorui.fan@baishancloud.com>

@@ -1,26 +1,23 @@
 # `echo_ext`
 
-[中文/Chinese](README.ZH.md)
+[英文/English](README.md)
 
-## Description
+## 描述
 
-A packet extending [echo](https://github.com/labstack/echo). Add `circuit breaker` and `error handler` etc...
+一个对 [echo](https://github.com/labstack/echo) 框架的扩展，添加了 `路由熔断`、`错误处理` 等。
 
 ### echo_ext
 
-It includes `logger` `error_handler` `context_enhance` and extends echo
+包含了 `logger`， `error_handler`，`context_enhance` 等。
 
-|     |  description | 
-| --- |  ------- |
-| `logger` | use a `log.Logger` to bridge `echo.Logger`,have access to log.Logger Unified printing. | 
-| `error_handler` | in debug mode, use `pkg/error` to return all error messages. |
-| `context_enhance` | added some methods of context
+|                   | 描述 |
+| ----------------- | ---  |
+| `logger`          | 使用了 `log.Logger` 桥接 `echo.Logger`，能够使用其进行统一打印 |
+| `error_handler`   | 在 `debug` 模式下，`pkg/error` 将会返回所有的错误信息。        |
+| `context_enhance` | 扩展了 `context` |
+| `middleware_ext`  | 添加了 `访问日志`、`路由熔断`、`日志适配器` 的 echo 中间件。     |
 
-### middleware_ext
-
-it adds `access_log` `circuit_breaker` `logger_adapter`  echo middleware
-
-## Synopsis
+## 使用
 
 ### access_log
 
