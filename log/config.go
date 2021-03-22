@@ -148,7 +148,7 @@ func (o *options) Init() Logger {
 	)
 	if o.stdOutput {
 		infoWriteSyncers = append(infoWriteSyncers, zapcore.AddSync(os.Stdout))
-		errWriteSyncers = append(errWriteSyncers, zapcore.AddSync(os.Stdout))
+		errWriteSyncers = append(errWriteSyncers, zapcore.AddSync(os.Stderr))
 	}
 	if o.outputPath != "" || o.errOutputPath != "" {
 		if o.outputPath != "" {
