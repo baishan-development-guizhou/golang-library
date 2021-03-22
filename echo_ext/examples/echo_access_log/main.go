@@ -17,5 +17,4 @@ func main() {
 		return context.JSON(http.StatusOK, echo.Map{"message": "ok"})
 	})
 	_ = engine.Start(":8080")
-
 }

@@ -1,17 +1,19 @@
 # `reporter`
 
+[中文/Chinese](README.ZH.md)
+
 ## Description
 
 There are an interface(endpoint) that collect information in our servers —— It allows us to report all the information we want to visualize in Grafana, such as *Memory*, *Goroutine* or other information.
 
 This module can auto report information with your application. Or use custom a `reporter` to report by yourself.
 
-> IMPORTANT： Only support `v2` endpoint.
+> IMPORTANT： Only support `v2` endpoint, please read [document](http://jr.baishancloud.com:8090/pages/viewpage.action?pageId=188953838).
 
 ## Usage
 
 You can use global report. ()
-> Remember update config by `Global()` method when use global report.
+> You can call method that start with `With...` if you need update config with global report.
 
 ```go
 package main
@@ -51,6 +53,6 @@ More examples see `examples` dir.
 | `addr`|Config this by calling `WithAddr(string)`. Server endpoint.| http://127.0.0.1:10699/v2/push
 | `defaultValue`|Config this by calling `WithDefaultValue(string)`. DefaultValue is the default value in shortcut methods, like SendPayLoad, SendPayLoadWithPoint.| `Point{Metric: "monitor-bigdata-test", Endpoint: "", Step: 60, Tags: Fields{"name=": "default"}}`
 | `context`| Config this by calling `WithContext(context)`. Context will be bound to ticker.| `context.Background()`
-| `client`| Config this by calling `WithClient(client)`. Request endpoint by this client.| `http.Client{}`
+| `client`| Config this by calling `WithClient(client)`. Request endpoint by this client.| `http.Client{Timeout: time.Second * 20}`
 | `log`| Config this by calling `WithLog(log)`.| `log.G()`
 | `before`,`after`, `errorHandler`| Config hook by `WithBefore`, `WithAfter`, `WithErrorHandler`.| func

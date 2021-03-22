@@ -2,7 +2,7 @@
 name: '功能需求 ✨'
 about: 需求或建议
 title: '✨ [Feature]'
-labels: 'question'
+labels: 'enhancement'
 assignees: ''
 ---
 

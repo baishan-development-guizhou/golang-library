@@ -10,7 +10,6 @@ import (
 )
 
 func main() {
-
 	engine := echo.New()
 	engine.Debug = true
 	log.ReplaceG(log.Configure().WithOutputEncoder(log.ConsoleOutputEncoder).WithNamed("[nefarian]").Init())
