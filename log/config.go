@@ -1,6 +1,7 @@
 package log
 
 import (
+	"github.com/baishan-development-guizhou/golang-library/ocommon/ostring"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
@@ -150,8 +151,8 @@ func (o *options) Init() Logger {
 		infoWriteSyncers = append(infoWriteSyncers, zapcore.AddSync(os.Stdout))
 		errWriteSyncers = append(errWriteSyncers, zapcore.AddSync(os.Stderr))
 	}
-	if o.outputPath != "" || o.errOutputPath != "" {
-		if o.outputPath != "" {
+	if ostring.IsAnyBlank(o.outputPath, o.errOutputPath) {
+		if ostring.IsNotBlank(o.outputPath) {
 			infoHook = &lumberjack.Logger{
 				Filename:   o.outputPath,
 				MaxSize:    o.maxSize,
@@ -159,11 +160,9 @@ func (o *options) Init() Logger {
 				MaxAge:     o.maxSize,
 				Compress:   o.compress,
 			}
-			if o.outputPath == o.errOutputPath {
-				errHook = infoHook
-			}
+			errHook = infoHook
 		}
-		if o.errOutputPath != "" && o.outputPath != o.errOutputPath {
+		if ostring.IsNotBlank(o.errOutputPath) {
 			errHook = &lumberjack.Logger{
 				Filename:   o.errOutputPath,
 				MaxSize:    o.maxSize,
@@ -172,8 +171,12 @@ func (o *options) Init() Logger {
 				Compress:   o.compress,
 			}
 		}
-		infoWriteSyncers = append(infoWriteSyncers, zapcore.AddSync(infoHook))
-		errWriteSyncers = append(errWriteSyncers, zapcore.AddSync(errHook))
+		if infoHook != nil {
+			infoWriteSyncers = append(infoWriteSyncers, zapcore.AddSync(infoHook))
+		}
+		if errHook != nil {
+			errWriteSyncers = append(errWriteSyncers, zapcore.AddSync(errHook))
+		}
 	}
 
 	if o.callerEncoder != nil {
