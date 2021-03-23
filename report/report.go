@@ -134,7 +134,13 @@ func (o *Options) request(point Point) bool {
 		o.error(point, http.StatusInternalServerError)
 		return false
 	}
+	if o.Dev {
+		o.log.Debugf("request body %v.", jsonStr)
+	}
 	resp, err := o.client.Post(o.url, "application/json; charset=UTF-8", bytes.NewBuffer(jsonStr))
+	if o.Dev {
+		o.log.Debugf("Response body %v.", resp)
+	}
 	if err != nil {
 		o.log.Errorf("Report Error: %v.", err.Error())
 		o.error(point, http.StatusServiceUnavailable)
@@ -149,6 +155,9 @@ func (o *Options) request(point Point) bool {
 		o.log.Errorf("Report Error: status code: %v.", resp.StatusCode)
 		o.error(point, resp.StatusCode)
 		return false
+	}
+	if o.Dev {
+		o.log.Debugf("Response status", resp.StatusCode)
 	}
 	return true
 }
