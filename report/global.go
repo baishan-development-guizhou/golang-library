@@ -51,55 +51,53 @@ func SendPayLoadWithPoint(point Point) *Options {
 // WithUrl can only update `url` parameters.
 // Support chain call.
 func WithUrl(url string) *Options {
-	global.url = url
-	return global
+	return global.WithUrl(url)
 }
 
 // WithUrl can only update `defaultValue` parameters.
 // Support chain call.
 func WithDefaultValue(defaultValue *Point) *Options {
-	global.defaultValue = defaultValue
-	return global
+	return global.WithDefaultValue(defaultValue)
 }
 
 // WithLog can update log.
 // Support chain call.
 func WithLog(log log.Logger) *Options {
-	global.log = log
-	return global
+	return global.WithLog(log)
 }
 
 // WithBefore can custom before hook.
 // Support chain call.
 func WithBefore(before func(point Point) Point) *Options {
-	global.before = before
-	return global
+	return global.WithBefore(before)
 }
 
 // WithAfter can custom after hook.
 // Support chain call.
 func WithAfter(after func(point Point, success bool)) *Options {
-	global.after = after
-	return global
+	return global.WithAfter(after)
 }
 
 // WithErrorHandler can custom error handle.
 // Support chain call.
 func WithErrorHandler(errorHandler func(point Point, status int)) *Options {
-	global.errorHandler = errorHandler
-	return global
+	return global.WithErrorHandler(errorHandler)
 }
 
 // WithContext will update contest.
 // Support chain call.
 func WithContext(context context.Context) *Options {
-	global.context = context
-	return global
+	return global.WithContext(context)
 }
 
 // WithClient can custom http client.
 // Support chain call.
 func WithClient(client *http.Client) *Options {
-	global.client = client
+	return global.WithClient(client)
+}
+
+// WithDev will output information.
+func WithDev(dev bool) *Options {
+	global.Dev = dev
 	return global
 }

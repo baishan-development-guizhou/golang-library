@@ -159,9 +159,9 @@ func TestOptions_Send(t *testing.T) {
 				return true
 			},
 			validate: func(data map[string]interface{}) bool {
-				return data["endpoint"].(string) == "2" && data["fields"].(string) == "b=a" &&
-					data["metric"].(string) == "1" && data["step"].(float64) == 2 &&
-					data["tags"].(string) == "a=1" && data["time_stamp"].(float64) == 3
+				return data["endpoint"].(string) == "2" && data["fields"].(map[string]interface{})["b"].(string) == "a" &&
+					data["name"].(string) == "1" && data["step"].(float64) == 2 &&
+					data["tags"].(map[string]interface{})["a"].(string) == "1" && data["time"].(float64) == 3
 			},
 			times: 1,
 		},

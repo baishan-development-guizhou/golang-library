@@ -7,8 +7,8 @@ import (
 	"time"
 )
 
-type Fields map[string]string
-type Tags map[string]interface{}
+type Fields map[string]interface{}
+type Tags map[string]string
 
 // Point is an immutable structure.
 type Point struct {
@@ -53,6 +53,8 @@ type Options struct {
 	before       func(point Point) Point
 	after        func(point Point, success bool)
 	errorHandler func(point Point, status int)
+
+	Dev bool
 }
 
 // Configure report options and return a new Options.
@@ -64,6 +66,7 @@ func Configure() *Options {
 		client:       &http.Client{Timeout: time.Second * 20},
 		context:      context.Background(),
 		log:          log.G(),
+		Dev:          false,
 	}
 }
 
