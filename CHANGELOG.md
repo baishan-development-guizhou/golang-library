@@ -3,6 +3,15 @@
 Golang-library by Baishan Cloud.
 
 
+<a name="v0.1.1"></a>
+## [v0.1.1] - 2021-03-23
+
+### 🐛 Bug Fixes
+
+- **log:** fixed log write file configs. [@樊国睿](https://github.com/baishan-development-guizhou/golang-library/commits?author=guorui.fan@baishan.com) [#460d9ee](https://github.com/baishan-development-guizhou/golang-library/commit/460d9ee893898e85fad0dd494cbde16a0be2c32f) (2021-03-23)   
+- **report:** fixed fields and tags type. Closes: [#19](https://github.com/baishan-development-guizhou/golang-library/issues/19). [@阿月很乖](https://github.com/baishan-development-guizhou/golang-library/commits?author=lizhongyue248@163.com) [#c24fc2c](https://github.com/baishan-development-guizhou/golang-library/commit/c24fc2c55358d39d5b1e2ac9a93b33a5d3ed49cb) (2021-03-23)   
+
+
 <a name="v0.1.0"></a>
 ## v0.1.0 - 2021-03-22
 
@@ -29,4 +38,5 @@ Golang-library by Baishan Cloud.
 
 
 
-[Unreleased]: https://github.com/baishan-development-guizhou/golang-library/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/baishan-development-guizhou/golang-library/compare/v0.1.1...HEAD
+[v0.1.1]: https://github.com/baishan-development-guizhou/golang-library/compare/v0.1.0...v0.1.1
