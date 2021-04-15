@@ -36,3 +36,18 @@ func StringSliceContainsAll(slice []string, args ...string) bool {
 func StringSliceIsEmpty(slice []string) bool {
 	return slice == nil || len(slice) == 0
 }
+
+func StringSliceCopy(slice []string) []string {
+	dst := make([]string, len(slice))
+	copy(dst, slice)
+	return dst
+}
+
+func StringSliceIndex(slice []string, arg string) int {
+	for index, item := range slice {
+		if item == arg {
+			return index
+		}
+	}
+	return -1
+}

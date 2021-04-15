@@ -1,6 +1,7 @@
 package oslice
 
 import (
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -72,5 +73,35 @@ func TestStringSliceIsEmpty(t *testing.T) {
 	}
 	for _, test := range tests {
 		assert.Equal(t, StringSliceIsEmpty(test.Param), test.Expect)
+	}
+}
+
+func TestStringSliceCopy(t *testing.T) {
+	tests := []struct {
+		Param []string
+	}{
+		{[]string{"1", "3", "2"}},
+		{[]string{"1", "2", "4"}},
+		{[]string{"1", "3"}},
+		{[]string{"1"}},
+	}
+	for _, test := range tests {
+		assert.NotEqual(t, fmt.Sprintf("%p", StringSliceCopy(test.Param)), fmt.Sprintf("%p", test.Param))
+	}
+}
+
+func TestStringSliceIndex(t *testing.T) {
+	tests := []struct {
+		Param1 []string
+		Param2 string
+		Expect int
+	}{
+		{[]string{"1", "3", "2"}, "2", 2},
+		{[]string{"1", "2", "4"}, "1", 0},
+		{[]string{"1", "3"}, "3", 1},
+		{[]string{"1"}, "2", -1},
+	}
+	for _, test := range tests {
+		assert.Equal(t, StringSliceIndex(test.Param1, test.Param2), test.Expect)
 	}
 }
