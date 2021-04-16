@@ -12,6 +12,10 @@ var (
 	_defaultCircuitBreakJudge = func(ctx echo.Context) bool {
 		return ctx.Response().Status >= http.StatusInternalServerError
 	}
+	_defaultCircuitBreakFailBack = func(ctx echo.Context, err error) error {
+		//nothing to do
+		return err
+	}
 	ErrJudgmentNotPassed = errors.New("judgement not passed")
 )
 
@@ -20,8 +24,10 @@ type CircuitBreakConfig struct {
 	Judge func(ctx echo.Context) bool
 	//CircuitBreaker at work
 	CircuitBreaker *gobreaker.CircuitBreaker
-	// Skipper defines a function to skip middleware_ext.
+	//Skipper defines a function to skip middleware_ext.
 	Skipper middleware.Skipper
+	//FailBack defines fault handle function when an error occurs
+	FailBack func(ctx echo.Context, err error) error
 }
 
 //CircuitBreakWithConfig Returns the middleware_ext of the circuit break
@@ -31,6 +37,9 @@ func CircuitBreakWithConfig(config CircuitBreakConfig) echo.MiddlewareFunc {
 	}
 	if config.Judge == nil {
 		config.Judge = _defaultCircuitBreakJudge
+	}
+	if config.FailBack == nil {
+		config.FailBack = _defaultCircuitBreakFailBack
 	}
 	if config.Skipper == nil {
 		config.Skipper = middleware.DefaultSkipper
@@ -49,7 +58,13 @@ func CircuitBreakWithConfig(config CircuitBreakConfig) echo.MiddlewareFunc {
 				}
 				return nil, err
 			})
-			return err
+			switch err {
+			// fail back when error is one of the ErrJudgmentNotPassed, ErrOpenState and ErrTooManyRequests
+			case ErrJudgmentNotPassed, gobreaker.ErrOpenState, gobreaker.ErrTooManyRequests:
+				return config.FailBack(context, err)
+			default:
+				return err
+			}
 		}
 	}
 
